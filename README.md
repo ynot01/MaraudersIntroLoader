@@ -1,6 +1,6 @@
 # Risk
 
-This software will **not** get you VAC banned. There is no DLL injection or any modifications to the Marauders binaries. All this does is replace a video in the Marauders folder with one you select.
+This software will **not** get you VAC banned. There is no DLL injection or any modifications to the Marauders binaries. All this does is replace a video in the Marauders folder with one you select and then boots marauders through steam via `steam://rungameid/1789480`.
 
 # MaraudersIntroLoader
  Custom Intro Loader/Randomizer for Marauders
