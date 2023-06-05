@@ -1,3 +1,7 @@
+# Risk
+
+This software will **not** get you VAC banned. There is no DLL injection or any modifications to the Marauders binaries. All this does is replace a video in the Marauders folder with one you select.
+
 # MaraudersIntroLoader
  Custom Intro Loader/Randomizer for Marauders
 
