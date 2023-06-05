@@ -7,7 +7,7 @@ This software will **not** get you VAC banned. There is no DLL injection or any 
 
 Written in Godot 4
 
-The Marauders & Central Empire property is owned by Small Impact Games and Team17 and is **not** covered by the licensing applied to this repository
+The Marauders & Central Empire intellectual properties are owned by Small Impact Games and Team17 and are **not** covered by the licensing applied to this repository
 
 This software will not work properly without [Marauders](https://store.steampowered.com/app/1789480/Marauders/)
 
