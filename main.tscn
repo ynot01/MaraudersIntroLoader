@@ -1,0 +1,137 @@
+[gd_scene load_steps=6 format=3 uid="uid://ba7o65ln28jbi"]
+
+[ext_resource type="Texture2D" uid="uid://c356vjebkyeos" path="res://Background.png" id="1_8l0b4"]
+[ext_resource type="Script" path="res://main.gd" id="2_vpb4u"]
+[ext_resource type="Script" path="res://ImportVideos.gd" id="3_26npl"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_m6kwj"]
+
+[sub_resource type="Theme" id="Theme_ajahw"]
+Button/styles/focus = SubResource("StyleBoxEmpty_m6kwj")
+
+[node name="Main" type="TextureRect"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 1
+theme = SubResource("Theme_ajahw")
+texture = ExtResource("1_8l0b4")
+script = ExtResource("2_vpb4u")
+metadata/_edit_lock_ = true
+
+[node name="Boot" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.075
+anchor_top = 0.125
+anchor_right = 0.925
+anchor_bottom = 0.2
+offset_bottom = -3.60001
+theme_override_font_sizes/font_size = 24
+text = "Start Marauders"
+
+[node name="FalseGame" type="AcceptDialog" parent="."]
+size = Vector2i(500, 200)
+dialog_text = "The program has encountered a file error, due to incorrect paths or locked files. Please retry whatever you were doing.
+If the problem persists, please retrieve the latest version or make an issue on the github."
+dialog_autowrap = true
+
+[node name="InfoFindGame" type="ConfirmationDialog" parent="."]
+size = Vector2i(500, 200)
+dialog_text = "You will now be taken to a file window to select Marauders' executable. You will only have to do this once.
+To find the Marauders executable, go to Steam and right click Marauders, click Properties, go to Local Files, then Browse."
+dialog_autowrap = true
+
+[node name="FindGame" type="FileDialog" parent="."]
+title = "Locate Marauders"
+size = Vector2i(700, 500)
+ok_button_text = "Open"
+dialog_autowrap = true
+mode_overrides_title = false
+file_mode = 0
+access = 2
+filters = PackedStringArray("RaidGame.exe")
+
+[node name="Import" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.075
+anchor_top = 0.225
+anchor_right = 0.925
+anchor_bottom = 0.3
+theme_override_font_sizes/font_size = 24
+text = "Import Video"
+
+[node name="ImportVideos" type="FileDialog" parent="."]
+title = "Import Video(s)"
+size = Vector2i(700, 500)
+ok_button_text = "Open"
+mode_overrides_title = false
+file_mode = 1
+access = 2
+filters = PackedStringArray("*.mp4")
+script = ExtResource("3_26npl")
+
+[node name="VideoScroll" type="ScrollContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.075
+anchor_top = 0.325
+anchor_right = 0.925
+anchor_bottom = 0.85
+horizontal_scroll_mode = 0
+
+[node name="VideoContainer" type="VBoxContainer" parent="VideoScroll"]
+custom_minimum_size = Vector2(0, 45)
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="InstructionsTop" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.85
+anchor_right = 1.0
+anchor_bottom = 0.85
+offset_bottom = 2.0
+color = Color(0, 0, 0, 1)
+
+[node name="Instructions" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.85
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = -2.0
+offset_bottom = -2.0
+color = Color(1, 1, 1, 0.337255)
+
+[node name="Label" type="Label" parent="Instructions"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 12
+text = "A random checked video will be selected on start-up.
+Right-click any video to be sent to its file location.
+Right click this box to be sent to the config/logs folder.
+If no videos are checked, the original video will be restored."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="Boot" to="." method="_on_boot_pressed"]
+[connection signal="confirmed" from="InfoFindGame" to="." method="_on_confirmation_dialog_confirmed"]
+[connection signal="file_selected" from="FindGame" to="." method="_on_find_game_file_selected"]
+[connection signal="pressed" from="Import" to="." method="_on_import_pressed"]
+[connection signal="about_to_popup" from="ImportVideos" to="ImportVideos" method="_on_about_to_popup"]
+[connection signal="files_selected" from="ImportVideos" to="." method="_on_import_videos_files_selected"]
+[connection signal="gui_input" from="Instructions/Label" to="." method="_on_label_gui_input"]

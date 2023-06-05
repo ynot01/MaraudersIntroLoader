@@ -1,0 +1,38 @@
+[gd_scene load_steps=2 format=3 uid="uid://bxg0qba6g0if3"]
+
+[ext_resource type="Script" path="res://vid_button.gd" id="1_xda7d"]
+
+[node name="VidButton" type="ColorRect"]
+custom_minimum_size = Vector2(0, 45)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+script = ExtResource("1_xda7d")
+
+[node name="Toggle" type="CheckBox" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.8
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "PlaceholderName"
+text_overrun_behavior = 3
+clip_text = true
+
+[node name="Remove" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.8
+anchor_top = 0.1
+anchor_right = 0.975
+anchor_bottom = 0.9
+grow_horizontal = 0
+grow_vertical = 2
+text = "X"
+
+[connection signal="gui_input" from="Toggle" to="." method="_on_toggle_gui_input"]
+[connection signal="toggled" from="Toggle" to="." method="_on_toggle_toggled"]
